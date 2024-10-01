@@ -1,41 +1,54 @@
 #include <iostream>
+#include <map>
 
-long long triangular_num(int num) {
-  long long result = 0;
+int prime_fact(int num) {
+  std::map<int, int> m;
+  int N = num;
 
-  for (int i = 1; i <= num; i++) {
-    result += i;
+  for (int i = 2; i * i <= N; i++) {
+    while (N % i == 0) {
+      if (m.find(i) != m.end()) {
+        m[i]++;
+      } else {
+        m.insert({i, 1});
+      }
+
+      N /= i;
+    }
+  }
+
+  if (N >= 2) {
+    m.insert({N, 1});
+  }
+
+  for (auto it : m) {
+    std::cout << "{" << it.first << "}" << it.second << "\n";
+  }
+
+  int result = 1;
+
+  for (auto i : m) {
+    result *= (i.second + 1);
   }
 
   return result;
 }
 
-int divisor_num(long long num) {
-  int cnt = 0;
-
-  for (int i = num; i > 0; i--) {
-    if (num % i == 0) {
-      cnt++;
-    }
-  }
-
-  return cnt;
-}
-
 int main(int argc, char *argv[]) {
 
-  int temp = 11603;
+  int temp = 0;
 
   while (1) {
     temp += 1;
 
-    long long tri = triangular_num(temp);
-    int cnt = divisor_num(tri);
+    long long tri = temp * (temp + 1) / 2;
+
+    int cnt = prime_fact(tri);
 
     std::cout << "triangular : " << tri << " divisor cnt : " << cnt
               << " temp : " << temp << "\n";
 
-    if (cnt >= 500) {
+    if (cnt >= 1000) {
       break;
     }
   }
