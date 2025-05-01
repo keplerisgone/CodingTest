@@ -45,7 +45,7 @@ EOL
 
 echo "코드를 기록하는 파일을 생성합니다: $base_dir/solution.py"
 cat > "$base_dir/solution.cpp" <<EOL
-#include <bits/stdc++.h>
+#include <iostream>
 
 using namespace std;
 
@@ -57,15 +57,9 @@ int main() {
 }
 EOL
 
-echo "입출력 예제를 기록하는 파일을 생성합니다: $base_dir/input_output.md"
-cat > "$base_dir/input_output.md" <<EOL
-# 입출력 예제
+echo "입출력 예제를 기록하는 파일을 생성합니다: $base_dir/input.txt"
+cat > "$base_dir/input.txt" <<EOL
 
-## 입력 예제
-(입력 예제를 작성하세요)
-
-## 출력 예제
-(출력 예제를 작성하세요)
 EOL
 
 echo "폴더와 파일이 성공적으로 생성되었습니다: $base_dir"
